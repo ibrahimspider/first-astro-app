@@ -1,0 +1,14 @@
+---
+const { product } = Astro.props;
+---
+
+<div class="grid grid-cols-12 gap-6 p-4">
+  <div class="col-span-4 shadow-md border flex justify-center items-center">
+    <img src={product.image_featured_path} class="w-10/12 m-auto" />
+  </div>
+  <div class="col-span-8 border p-6">
+    <h2 class="text-4xl font-semibold">{product.name}</h2>
+    <h3 class="text-4xl font-semibold text-red-600">{product.price}</h3>
+    <p>{product.tagline}</p>
+  </div>
+</div>

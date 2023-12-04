@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Card from "../../components/Card.astro";
+export function getStaticPaths() {
+  return [
+    { params: { name: "curling-irons" } },
+    { params: { name: "air-stylers" } },
+    { params: { name: "hot-brushes" } },
+  ];
+}
+const { name } = Astro.params;
+
+const headers = { "X-rushbrush-website": "eg-en" };
+const res = await fetch(`https://app-api.rushbrush.dev/catalog/products?q=3`, {
+  headers,
+});
+const data = await res.json();
+---
+
+<Layout title="RUSHBRUSH">
+  <div class="py-10 max-w-7xl m-auto">
+    <h1 class="text-gray-500 text-5xl text-center mb-10">{name}</h1>
+    {data.data.products.map((product: any) => <Card product={product} />)}
+  </div>
+</Layout>

@@ -1,0 +1,24 @@
+---
+const headers = { "X-rushbrush-website": "eg-en" };
+const res = await fetch("https://app-api.rushbrush.dev/catalog/categories", {
+  headers,
+});
+const data = await res.json();
+---
+
+<nav class="py-5 bg-[#1e1e1e] text-white">
+  <div class="container mx-auto px-4 flex justify-between">
+    <div>
+      <a class="text-2xl font-semibold" href="/">RUSHBRUSH</a>
+    </div>
+    <ul class="flex gap-4">
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <li>
+        <a href="/products">Product</a>
+      </li>
+      {data.data.categories.map((item: any) => <li><a href={`/products/${item.slug}`}>{item.name} </a></li>)}
+    </ul>
+  </div>
+</nav>
